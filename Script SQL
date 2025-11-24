@@ -1,0 +1,34 @@
+CREATE TABLE Embarcacion (
+  id_emb INT AUTO_INCREMENT PRIMARY KEY,
+  nombre VARCHAR(50),
+  matricula VARCHAR(30),
+  capacidad DECIMAL(10,2),
+  propietario VARCHAR(100)
+);
+
+CREATE TABLE Pescador (
+  id_pesc INT AUTO_INCREMENT PRIMARY KEY,
+  nombres VARCHAR(50),
+  apellidos VARCHAR(50),
+  dni CHAR(8),
+  id_emb INT,
+  FOREIGN KEY (id_emb) REFERENCES Embarcacion(id_emb)
+);
+
+CREATE TABLE Especie (
+  id_esp INT AUTO_INCREMENT PRIMARY KEY,
+  nombre_comun VARCHAR(50),
+  nombre_cientifico VARCHAR(100),
+  estado_conservacion VARCHAR(50)
+);
+
+CREATE TABLE Captura (
+  id_cap INT AUTO_INCREMENT PRIMARY KEY,
+  id_emb INT,
+  id_esp INT,
+  peso DECIMAL(8,2),
+  talla DECIMAL(5,2),
+  fecha DATE,
+  FOREIGN KEY (id_emb) REFERENCES Embarcacion(id_emb),
+  FOREIGN KEY (id_esp) REFERENCES Especie(id_esp)
+);
