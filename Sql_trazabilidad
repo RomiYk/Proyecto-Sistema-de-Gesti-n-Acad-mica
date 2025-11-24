@@ -1,0 +1,14 @@
+DELIMITER $$
+
+CREATE PROCEDURE generar_lote(
+    IN p_id_cap INT,
+    OUT p_id_lote INT
+)
+BEGIN
+    INSERT INTO Lote (id_cap, fecha_creacion)
+    VALUES (p_id_cap, NOW());
+    
+    SET p_id_lote = LAST_INSERT_ID();
+END$$
+
+DELIMITER ;
