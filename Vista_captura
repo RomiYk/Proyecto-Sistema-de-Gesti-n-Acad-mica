@@ -1,0 +1,12 @@
+CREATE VIEW vista_capturas_detalladas AS
+SELECT 
+    c.id_cap,
+    e.nombre AS embarcacion,
+    es.nombre_comun AS especie,
+    c.peso,
+    c.talla,
+    c.fecha,
+    c.foto
+FROM Captura c
+INNER JOIN Embarcacion e ON c.id_emb = e.id_emb
+INNER JOIN Especie es ON c.id_esp = es.id_esp;
