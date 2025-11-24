@@ -1,0 +1,21 @@
+DELIMITER $$
+
+CREATE TRIGGER alerta_zona_restringida
+AFTER INSERT ON Localizacion
+FOR EACH ROW
+BEGIN
+    DECLARE es_restringida BOOLEAN;
+
+    SELECT 
+        (ST_Contains(zona_geometria, POINT(NEW.latitud, NEW.longitud))) 
+    INTO es_restringida
+    FROM ZonaRestringida
+    LIMIT 1;
+
+    IF es_restringida THEN
+        INSERT INTO Alerta (id_emb, descripcion, fecha_hora)
+        VALUES (NEW.id_emb, 'Ingreso a zona restringida', NOW());
+    END IF;
+END$$
+
+DELIMITER ;
