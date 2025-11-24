@@ -1,0 +1,11 @@
+CREATE TRIGGER verificar_talla
+BEFORE INSERT ON Captura
+FOR EACH ROW
+BEGIN
+  DECLARE talla_min DECIMAL(5,2);
+  SELECT talla_minima INTO talla_min FROM Especie WHERE id_esp = NEW.id_esp;
+  IF NEW.talla < talla_min THEN
+    SIGNAL SQLSTATE '45000'
+    SET MESSAGE_TEXT = 'Error: Talla por debajo del mínimo permitido';
+  END IF;
+END;
