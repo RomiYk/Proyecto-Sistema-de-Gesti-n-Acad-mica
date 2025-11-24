@@ -1,0 +1,11 @@
+CREATE VIEW vista_trazabilidad AS
+SELECT 
+    l.id_lote,
+    c.id_cap,
+    es.nombre_comun AS especie,
+    e.nombre AS embarcacion,
+    l.fecha_creacion
+FROM Lote l
+JOIN Captura c ON l.id_cap = c.id_cap
+JOIN Especie es ON c.id_esp = es.id_esp
+JOIN Embarcacion e ON c.id_emb = e.id_emb;
