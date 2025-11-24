@@ -1,0 +1,8 @@
+CREATE VIEW vista_alertas_zonas AS
+SELECT 
+    a.id_alerta,
+    e.nombre AS embarcacion,
+    a.descripcion,
+    a.fecha_hora
+FROM Alerta a
+INNER JOIN Embarcacion e ON a.id_emb = e.id_emb;
