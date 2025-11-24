@@ -1,0 +1,13 @@
+DELIMITER $$
+
+CREATE PROCEDURE registrar_gps(
+    IN p_id_emb INT,
+    IN p_lat DECIMAL(10,6),
+    IN p_lng DECIMAL(10,6)
+)
+BEGIN
+    INSERT INTO Localizacion (id_emb, latitud, longitud, fecha_hora)
+    VALUES (p_id_emb, p_lat, p_lng, NOW());
+END$$
+
+DELIMITER ;
