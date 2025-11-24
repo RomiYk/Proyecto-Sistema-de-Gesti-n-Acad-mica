@@ -1,0 +1,4 @@
+CREATE TRIGGER fecha_creacion_lote
+BEFORE INSERT ON Lote
+FOR EACH ROW
+SET NEW.fecha_creacion = NOW();
