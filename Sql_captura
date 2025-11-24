@@ -1,0 +1,15 @@
+DELIMITER $$
+
+CREATE PROCEDURE registrar_captura(
+    IN p_id_emb INT,
+    IN p_id_esp INT,
+    IN p_peso DECIMAL(8,2),
+    IN p_talla DECIMAL(5,2),
+    IN p_foto VARCHAR(255)
+)
+BEGIN
+    INSERT INTO Captura (id_emb, id_esp, peso, talla, fecha, foto)
+    VALUES (p_id_emb, p_id_esp, p_peso, p_talla, CURDATE(), p_foto);
+END$$
+
+DELIMITER ;
